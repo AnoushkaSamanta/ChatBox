@@ -7,14 +7,15 @@ const protectRoute = async (req, res,next) => {
     if (!token) {
       return res.status(401).json({ error: "Unauthorized-no token provided" });
     }
+    // console.log("Jwt secret = "+process.env.JWT_SECRET)
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    console.log("Decoded"+decoded.userId);
-    console.log("Token "+token)
+    // console.log("Decoded Token Full Details:", JSON.stringify(decoded, null, 2));
+    // console.log("Token "+token)
     if (!decoded) {
       res.status(401).json({ error: "Unauthorized-invalid token" });
     }
 
-    const user = await User.findById(decoded.userId);
+    const user = await User.findById(decoded.userid);
     if (!user) {
         return res.status(404).json({ 
           error: "User not found", 

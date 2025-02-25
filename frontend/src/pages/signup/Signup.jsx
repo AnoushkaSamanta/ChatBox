@@ -103,7 +103,8 @@ function Signup() {
           </Link>
 
           <div>
-            <button className="btn btn-soft btn-info mt-4">SignUp</button>
+            <button className="btn btn-soft btn-info mt-4"
+            disabled={loading}>{loading ? <span className='loading loading-spinner'></span> : "Sign Up"}</button>
           </div>
         </form>
       </div>

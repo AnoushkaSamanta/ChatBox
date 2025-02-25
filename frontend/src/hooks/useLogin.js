@@ -1,10 +1,15 @@
 import React, { useState } from "react";
 import { useAuthContext } from "../context/AuthContext";
-
+import toast from "react-hot-toast";
 const useLogin = () => {
   const [loading, setLoading] = useState(false);
   const {setAuthUser}=useAuthContext()
   const login = async (username, password) => {
+    const success = handleInputError({
+      username,
+      password
+    });
+    if (!success) return;
     setLoading(true);
     try {
       const res = await fetch("/api/auth/login", {
@@ -30,3 +35,17 @@ const useLogin = () => {
 };
 
 export default useLogin;
+
+function handleInputError({
+
+  username,
+  password,
+
+}) {
+  if ( !username || !password ) {
+    toast.error("Please fill all the fields.");
+    return false;
+  }
+
+  return true;
+}

@@ -55,18 +55,24 @@ export const signup = async (req, res) => {
 
 export const login = async (req, res) => {
   try {
-    let { username, password } = req.body;
+    const { username, password } = req.body;
     const user = await User.findOne({ username });
-    //checking if password is correct
-    const isPasswordCorrect = await bcrypt.compare(
-      password,
-      user?.password || ""
-    );
-    if (!user || !isPasswordCorrect) {
-      res.status(400).json({ error: "Invalid username or password" });
+    
+    // First check if user exists
+    if (!user) {
+      return res.status(400).json({ error: "Invalid username or password" });
     }
+    
+    // Then check password
+    const isPasswordCorrect = await bcrypt.compare(password, user.password);
+    if (!isPasswordCorrect) {
+      return res.status(400).json({ error: "Invalid username or password" });
+    }
+    
+    // If we get here, both user and password are valid
     generateToken(user._id, res);
-    res.status(201).json({
+    
+    res.status(200).json({
       _id: user._id,
       fullname: user.fullname,
       username: user.username,
@@ -74,7 +80,6 @@ export const login = async (req, res) => {
     });
   } catch (error) {
     console.log("Error in login", error.message);
-
     res.status(500).json({ error: "Internal server error" });
   }
 };

@@ -14,6 +14,7 @@ function Message({ message }) {
   
   // This class correctly determines the alignment
   const chatClassName = fromMe ? "chat-end" : "chat-start";
+  const shakeClass=message.shouldShake?"shake":""
   
   return (
     <div className={`chat ${chatClassName}`}>
@@ -23,7 +24,7 @@ function Message({ message }) {
         </div>
       </div>
       
-      <div className={`chat-bubble ${bubbleBgColor} text-white`}>
+      <div className={`chat-bubble ${bubbleBgColor} ${shakeClass} text-white`}>
         {message.message}
       </div>
       

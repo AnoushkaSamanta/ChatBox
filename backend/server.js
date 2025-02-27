@@ -11,7 +11,7 @@ import messageRoutes from "./routes/messageroutes.js"
 
 import connectToMongoDB from "./db/connectToMongoDB.js";
 
-const app=express();
+import { app, server } from "./socket/socket.js";
 app.use(cors({
     origin: "http://localhost:3000",
     credentials: true
@@ -33,7 +33,7 @@ app.get("/",(req,res)=>{
 
 
 
-app.listen(PORT, '0.0.0.0', () => {
+server.listen(PORT, '0.0.0.0', () => {
     connectToMongoDB()
     console.log(`Server running on port ${PORT}`)
 })

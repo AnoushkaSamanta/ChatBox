@@ -12,7 +12,15 @@ useEffect(()=>{
     newMessage.shouldShake=true;
     const sound=new Audio(notificationSound)
     sound.play()
-    setMessages([...messages,newMessage])
+    const currentMessages = useConversation.getState().messages;
+    // setMessages([...messages,newMessage])
+    if (Array.isArray(currentMessages)) {
+      // Set the updated array directly
+      setMessages([...currentMessages, newMessage]);
+    } else {
+      // If messages is not an array, initialize with just the new message
+      setMessages([newMessage]);
+    }
 
   }
 )

@@ -1,6 +1,5 @@
 import express from "express"
 import cors from 'cors';
-
 import dotenv from "dotenv"
 dotenv.config()
 import cookieParser from "cookie-parser"
@@ -36,4 +35,6 @@ app.get("/",(req,res)=>{
 server.listen(PORT, '0.0.0.0', () => {
     connectToMongoDB()
     console.log(`Server running on port ${PORT}`)
+    console.log("JWT_SECRET:", process.env.JWT_SECRET);
+console.log("NODE_ENV:", process.env.NODE_ENV);
 })

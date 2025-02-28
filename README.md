@@ -3,6 +3,18 @@
 
 ChatBox is a Web-Based Chat-Application developed using the MERN (MongoDB, Express.js, React.js, Node.js) stack. It allows users to register, log in, and chat with other users in real time.
 
+![image](https://github.com/user-attachments/assets/312913c7-bc93-42bd-abe2-194310e3d91c)
+
+![image](https://github.com/user-attachments/assets/cca3fba1-85b7-44b6-bcd2-85520891050c)
+
+![image](https://github.com/user-attachments/assets/4821b9ed-e079-4482-8dd0-8e70294c31e5)
+
+![image](https://github.com/user-attachments/assets/2c8c9a15-59bb-48fc-9a18-dd5e6d25626d)
+
+
+
+
+
 ## ✨  Features
 
 • User authentication: Users can register and log in securely.
